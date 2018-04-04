@@ -4,6 +4,8 @@
 
 ```
 ng new my-app-router --routing
+自动生成 app-routing.module.ts 文件
+app.module.ts 会自动导入 AppRoutingModule模块 
 ```
 ## 路由相关对象
 > Routes
@@ -40,10 +42,44 @@ ng new my-app-router --routing
 在Html中声明路由导航用的指令。
 ```
 - 配置
-```javascript
+  * html
+  ```html
+  <a [routerLink] = "['/']">主页</a>
+  <!-- 访问子路由 使用 './' -->
+  <a [routerLink]="['/stock']">股票详情</a>
+  <!-- 使用js方法控制路由跳转,调用router的 this.router.navigate(['/stock']); -->
+  <!-- click 调用方法不写小括号没发调用 -->
+  <input type="button" value="股票详情" (click)="toStockDetail()">
+  <router-outlet></router-outlet>
+  ```
 
-```
-> ActivatedRoute
+  * TS
+  ```javascript
+  import { Router } from '@angular/router';
+
+  toStockDetail() {
+    // 调用router的navigate方法实现跳转
+    this.router.navigate(['/stock']);
+  }
+  ```
+  * app-routing.module
+  ```javascript
+  import { HomeComponent } from './home/home.component';
+  import { StockComponent } from './stock/stock.component';
+  import { Code404Component } from './code404/code404.component';
+
+  const routes: Routes = [
+    {path: '', component: HomeComponent},  // 不需要加  '/', 默认写法
+    {path: 'stock', component: StockComponent},
+    {path: '**', component: Code404Component},  // 通配符路由,其它不存在的跳转到404
+  ];
+
+  @NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+  })
+  ```
+> ActivatedRoute (路由时传递数据)
 - 定义
 ```
 当前激活的路由对象，保存这当前路由的信息，如路由地址，路由参数等。
@@ -51,6 +87,29 @@ ng new my-app-router --routing
 - 配置
 ```javascript
 
+```
+- 在查询参数中传递数据
+```bash
+传递   =>  获取
+/product?id=1&name=2   =>   ActivatedRoute.queryParams[id]
+```
+
+- 在路由路径中传递数据
+```bash
+{path:/produce/:id}  => /product/1  =>  ActivatedRoute.queryParams[id]
+```
+
+- 在路由配置中传递数据
+```javascript
+{
+    path: /product,
+    component: ProductComponent,
+    data: [{
+        isProd: true
+    }]
+}
+=>
+ActivatedRoute.data[0][isProd] 
 ```
 ## 路由配置
 
