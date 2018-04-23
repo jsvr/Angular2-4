@@ -1,6 +1,6 @@
 <a [routerLink] = "['/']">主页</a>
 <!-- 访问子路由 使用 './' -->
-<a [routerLink]="['/stock']">股票详情</a>
+<a [routerLink]="['/stock']" [queryParams]="{id:1,name:'zy'}">股票详情</a>
 <!-- 使用js方法控制路由跳转,调用router的 this.router.navigate(['/stock']); -->
 <!-- click 调用方法不写小括号没发调用 -->
 <input type="button" value="股票详情" (click)="toStockDetail()">
