@@ -3,7 +3,7 @@
 ## 项目初始化
 
 ```
-ng new my-app-router --routing
+ng new my-app-router --routing style=scss
 自动生成 app-routing.module.ts 文件
 app.module.ts 会自动导入 AppRoutingModule模块 
 ```
@@ -96,6 +96,7 @@ app.module.ts 会自动导入 AppRoutingModule模块
 
 - 在路由路径中传递数据
 ```bash
+传递   =>  获取
 {path:/produce/:id}  => /product/1  =>  ActivatedRoute.queryParams[id]
 ```
 
@@ -107,9 +108,9 @@ app.module.ts 会自动导入 AppRoutingModule模块
     data: [{
         isProd: true
     }]
-}
+}                                  // 定义   
 =>
-ActivatedRoute.data[0][isProd] 
+ActivatedRoute.data[0][isProd]     // 获取
 ```
 ## 路由配置
 
