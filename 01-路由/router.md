@@ -3,7 +3,7 @@
 ## 项目初始化
 
 ```
-ng new my-app-router --routing style=scss
+ng new my-app-router --routing --style=scss
 自动生成 app-routing.module.ts 文件
 app.module.ts 会自动导入 AppRoutingModule模块 
 ```
