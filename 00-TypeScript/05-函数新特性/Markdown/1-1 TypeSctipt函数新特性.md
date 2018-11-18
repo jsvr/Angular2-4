@@ -33,9 +33,5 @@
     func1(...args2);  // 打印: 7 8 9;
     // 因为声明时,3个参数是固定的,所以打印三个参数.
     // git add 05-函数新特性
-<<<<<<< HEAD
-    // git add 05-函数新特性 zy分支冲突test
-=======
     // git add 05-函数新特性 zy分支 online test
->>>>>>> online
     ```
